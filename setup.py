@@ -64,7 +64,7 @@ def lines(fname):
 
 
 def requires():
-    return lines("requirements/pipy.txt")
+    return lines("requirements/pypi.txt")
 
 
 def install_repos():
