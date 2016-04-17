@@ -1,0 +1,5 @@
+Django
+pysqlite
+Sphinx
+Werkzeug
+django-extensions
