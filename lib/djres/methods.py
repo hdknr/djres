@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.models import ContentType
 
 
-class BaseMethod(object):
+class BaseModel(object):
     def get_absolute_url(self):
         return reverse(
             '{0}_{1}_detail'.format(
@@ -19,3 +19,4 @@ class BaseMethod(object):
     @classmethod
     def contenttype(cls):
         return ContentType.objects.get_for_model(cls)
+
