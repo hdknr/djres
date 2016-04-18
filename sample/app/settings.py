@@ -124,3 +124,4 @@ STATIC_URL = '/static/'
 INSTALLED_APPS += [
     'djres',
 ]
+SUPPORTED_LANGS = ['ja', 'th', 'id', ]
