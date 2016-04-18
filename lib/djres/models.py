@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+
 from . import methods, querysets
 
 
@@ -29,7 +32,32 @@ class Lang(BaseModel):
         verbose_name = _('Supported Language')
         verbose_name_plural = _('Supported Language')
 
-    objects =  querysets.LangQuerySet.as_manager()
+    objects = querysets.LangQuerySet.as_manager()
 
     def __unicode__(self):
         return self.name_local
+
+
+class LangResource(BaseModel):
+    lang = models.ForeignKey(
+        Lang, verbose_name=_('Language'),
+        null=True, default=None, blank=True)
+    content_type = models.ForeignKey(
+        ContentType, on_delete=models.SET_NULL,
+        null=True, default=None, blank=True)
+    object_id = models.PositiveIntegerField(
+        null=True, default=None, blank=True)
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    fieldname = models.CharField(
+        _('Field Name'), max_length=20)
+    text = models.TextField(
+        _('Text Resource'),
+        null=True, blank=True, default=None)
+    media = models.FileField(
+        _('Media Resource'),
+        null=True, blank=True, default=None)
+
+    class Meta:
+        verbose_name = _('Language Resource')
+        verbose_name_plural = _('Language Resource')
