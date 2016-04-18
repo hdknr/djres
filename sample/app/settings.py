@@ -121,7 +121,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 ###
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+LANGUAGE_CODE = 'ja'
+TIME_ZONE = 'Asia/Tokyo'
 INSTALLED_APPS += [
     'djres',
 ]
+#
 SUPPORTED_LANGS = ['ja', 'th', 'id', ]
